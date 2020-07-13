@@ -53,7 +53,9 @@ body {
 }
 
 .posts {
+  position: relative;
   flex: 2 0 0;
+  min-height: 700px;
 }
 
 .sidebar, .posts {
@@ -102,12 +104,21 @@ body {
 /* Post */
 
 .post {
+  position: absolute;
+  opacity: 0;
+  transition: 1s;
+  &.active {
+    opacity: 1;
+  }
+}
+/*
+.post {
   display: none;
   &.active {
     display: block;
   }
 }
-
+*/
 .post-author {
   font-style: italic;
 }
