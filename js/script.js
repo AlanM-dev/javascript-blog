@@ -37,15 +37,15 @@
   
     /* [DONE] add class 'active' to the correct article */
     targetArticle.classList.add('active');
-  }
-  
-  
+  };  
+
 
   // ARTICLE SELECTOR // -------------------------
   const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+    optTitleSelector = '.post-title',
+    optTitleListSelector = '.titles';
 
+  // eslint-disable-next-line no-inner-declarations
   function generateTitleLinks(){
 
     /* [DONE] remove contents of titleList */
@@ -58,9 +58,9 @@
     let html = '';
 
     for(let article of articles){
-      console.log(article)
+      console.log(article);
       
-       /* [DZIALA] get the article id */
+      /* [DZIALA] get the article id */
       const articleId = article.getAttribute('id');
       console.log(articleId);
 
@@ -86,7 +86,7 @@
     console.log(links);
   
     for(let link of links){
-    link.addEventListener('click', titleClickHandler);
+      link.addEventListener('click', titleClickHandler);
     }
 
   }
