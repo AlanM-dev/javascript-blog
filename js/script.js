@@ -128,9 +128,8 @@
         console.log(tag);
 
         /* [DONE] generate HTML of the link */
-        const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+        const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>' + '\n';
         console.log(linkHTML);
-
 
         /* [DONE] add generated code to html variable */
         html = html + linkHTML;
@@ -138,7 +137,7 @@
       /* [DONE] END LOOP: for each tag */
       }
 
-      /* [PROBLEM] insert HTML of all the links into the tags wrapper */
+      /* [DONE] insert HTML of all the links into the tags wrapper */
       tagsList.innerHTML = html;
 
     /* END LOOP: for every article: */
