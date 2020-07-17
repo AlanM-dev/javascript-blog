@@ -227,10 +227,43 @@
 
   generateAuthors();
 
+  function authorClickHandler(event) {
 
+    event.preventDefault();
+    const clickedElement = this;
 
+    const href = clickedElement.getAttribute('href');
 
+    const author = href.replace('#', '');
 
+    const activeLinks = document.querySelectorAll('a[href="' + href + '"]');
+
+    for(let activeLink of activeLinks){
+      activeLink.classList.remove('active');
+    }
+
+    const authorLinks = document.querySelectorAll('href');
+
+    for(let authorLink of authorLinks){
+      authorLink.classList.add('active');
+    }
+
+    generateTitleLinks('[data-authors="' + author + '"]');
+
+  }
+
+  function addClickListenersToAuthors(){
+
+    const activeLinks = document.querySelectorAll('.post-author');
+
+    for(let link of activeLinks){
+
+      link.addEventListener('click', authorClickHandler);
+    }
+
+  }
+
+  addClickListenersToAuthors();
 
 
 }
