@@ -95,11 +95,38 @@
 
   generateTitleLinks();
 
+
+  function calculateTagsParams(tags){
+    const params = {max:0, min:999999};
+    for(let tag in tags){
+      console.log(tag + ' is used ' + tags[tag] + ' times');
+      if(tags[tag] > params.max){
+        params.max = tags[tag];
+      }
+      if(tags[tag] < params.min){
+        params.min = tags[tag];
+      }
+    }
+    return params;
+  }
+
   // MODUŁ 7.2 i 7.3 //
 
   // GENERATE TAGS // ----------------------------------------------
   const optArticleTagsSelector = '.post-tags .list';
-  const optTagsListSelector = '.tags.list'; // PO CO? NIGDZIE NIE UZYTE? //
+  const optTagsListSelector = '.tags.list'; // PO CO TO JEST? NIGDZIE NIE JEST UZYTE? //
+  const optCloudClassCount = 5;
+  const optCloudClassPrefix ='tag-size-';
+
+
+  function calculateTagClass (count, params) {
+    const normalizedCount = count - params.min;
+    const normalizedMax = params.max - params.min;
+    const percentage = normalizedCount / normalizedMax;
+    const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+    return (optCloudClassPrefix + classNumber);
+  }
+
 
   function generateTags(){
     /* [NEW] create a new variable allTags with an empty object */
@@ -154,13 +181,18 @@
     const tagList = document.querySelector('.tags');
 
     /* [NEW] create variable for all links HTML code */
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams:', tagsParams);
     let allTagsHTML = '';
 
     /* [NEW] START LOOP: for each tag in allTags: */
     for(let tag in allTags){
       /* [NEW] generate code of a link and add it to allTagsHTML */
-      allTagsHTML += tag + ' (' + allTags[tag] + ') ';
-      console.log(allTagsHTML);
+      //allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+      //console.log(allTagsHTML);
+
+      const tagLinkHTML = '<li><a href="#tag=' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '"' + '">' + tag + ' (' + allTags[tag] + ')' + '</a></li>';
+      allTagsHTML += tagLinkHTML;
 
     /* [NEW] END LOOP: for each tag in allTags: */
     }
