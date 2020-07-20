@@ -153,7 +153,7 @@
 
     /* [NEW] add html from allTags to tagList */
     tagList.innerHTML = allTags.join(' ');
-    }
+
   }
 
   generateTags();
