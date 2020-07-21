@@ -7,7 +7,7 @@
     tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
     authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
     tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
-    //authorCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud').innerHTML)
+    authorCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
   };
 
 
@@ -316,17 +316,21 @@
 
       author.innerHTML = linkHTML;
     }
-    let allAuthorHTML = '';
+    //let allAuthorHTML = ''; //////////////////
+    const allAuthorsData = {authors: []};
+    const authorList = document.querySelector('.authors');
+    authorList.innerHTML = html;
+    allAuthorsData.innerHTML = templates.authorCloudLink(allAuthorsData);
 
-    for(let author of allAuthors){
+    // for(let author of allAuthors){
 
-      const authorLinkHTML = '<li><a href="#' + author + '">' + author + '</a></li>';
-      allAuthorHTML += authorLinkHTML;
+    //   const authorLinkHTML = '<li><a href="#' + author + '">' + author + '</a></li>';
+    //   allAuthorHTML += authorLinkHTML;
 
-    }
+    // }
 
-    const authorsList = document.querySelector('.list.authors');
-    authorsList.innerHTML = allAuthorHTML;
+    // const authorsList = document.querySelector('.list.authors');
+    // authorsList.innerHTML = allAuthorHTML;
 
     const authorLinks = document.querySelectorAll('.list.authors a');
 
