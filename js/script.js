@@ -2,6 +2,16 @@
 {
   'use strict';
 
+  const templates = {
+    articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+    tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+    authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+    tagCloud: Handlebars.compile(document.querySelector('#template-tag-cloud').innerHTML),
+    authorCloud: Handlebars.compile(document.querySelector('#template-author-cloud').innerHTML)
+  };
+
+
+
   // MODUŁ 6.3 //
   // CLICK HANDLER // ---------------------------------------------
   const titleClickHandler = function(event){
@@ -74,8 +84,11 @@
       const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
       /* [DONE] create HTML of the link */
-      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      //const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
       //console.log(linkHTML);
+      const linkHTMLData = {id: articleId, title: articleTitle};
+      const linkHTML = templates.articleLink(linkHTMLData);
+
 
       /* [DONE] insert link into titleList */
       html = html + linkHTML;
@@ -155,7 +168,9 @@
       for(let tag of articleTagsArray){
 
         /* [DONE] generate HTML of the link */
-        const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>' + '\n';
+        //const linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>' + '\n';
+        const linkHTMLData = {tag: tag};
+        const linkHTML = templates.tagLink(linkHTMLData);
 
         /* [DONE] add generated code to html variable */
         html = html + linkHTML;
@@ -285,7 +300,10 @@
         allAuthors.push(articleAuthor);
       }
 
-      const linkHTML = '<a href="#' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
+      //const linkHTML = '<a href="#' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
+
+      const linkHTMLData = {class: articleAuthor, title: articleAuthor};
+      const linkHTML = templates.authorLink(linkHTMLData);
 
       html = html + linkHTML;
 
