@@ -132,10 +132,12 @@ body {
 }
 
 /* tag list */
+.tags li {
+  display: inline-block;
+}
 
 a[class^=tag-size-] {
   text-decoration: none;
-  display: inline;
 }
 .tag-size-5 {
   color: #0000b3;
