@@ -303,34 +303,26 @@
 
       const articleAuthor = author.getAttribute('data-author');
 
-      if(!allAuthors.includes(articleAuthor)){
-        allAuthors.push(articleAuthor);
-      }
+
 
       //const linkHTML = '<a href="#' + articleAuthor + '"><span>' + articleAuthor + '</span></a>';
 
       const linkHTMLData = {class: articleAuthor, title: articleAuthor};
       const linkHTML = templates.authorLink(linkHTMLData);
 
-      html = html + linkHTML;
+
+
+      if(!allAuthors.includes(articleAuthor)){
+        allAuthors.push(articleAuthor);
+        html = html + linkHTML;
+      }
 
       author.innerHTML = linkHTML;
     }
-    //let allAuthorHTML = ''; //////////////////
-    const allAuthorsData = {authors: []};
+
     const authorList = document.querySelector('.authors');
     authorList.innerHTML = html;
-    allAuthorsData.innerHTML = templates.authorCloudLink(allAuthorsData);
 
-    // for(let author of allAuthors){
-
-    //   const authorLinkHTML = '<li><a href="#' + author + '">' + author + '</a></li>';
-    //   allAuthorHTML += authorLinkHTML;
-
-    // }
-
-    // const authorsList = document.querySelector('.list.authors');
-    // authorsList.innerHTML = allAuthorHTML;
 
     const authorLinks = document.querySelectorAll('.list.authors a');
 
